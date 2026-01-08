@@ -1,41 +1,228 @@
 <!doctype html>
 <html lang="ja">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>造影剤の説明・チューブ接続 音声ガイド</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>造影剤の説明・チューブ接続 音声ガイド</title>
+  <style>
+    :root {
+      --border:#e6e6e6;
+      --muted:#666;
+      --bg:#fff;
+    }
+    body {
+      font-family: system-ui, -apple-system, "Hiragino Sans", "Segoe UI", sans-serif;
+      margin: 18px;
+      line-height: 1.45;
+      color:#111;
+      background: var(--bg);
+    }
+    h1 {
+      font-size: 28px;
+      margin: 0 0 8px 0;
+      font-weight: 800;
+    }
+    .note {
+      font-size: 12px;
+      color: var(--muted);
+      margin: 0 0 14px 0;
+    }
+    .card {
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 16px;
+      max-width: 980px;
+      background:#fff;
+    }
+    .tag {
+      display:inline-block;
+      font-size: 12px;
+      color: var(--muted);
+      background:#f5f5f5;
+      border:1px solid var(--border);
+      padding: 6px 12px;
+      border-radius: 999px;
+      margin-bottom: 10px;
+    }
+    .row {
+      display:flex;
+      gap: 12px;
+      align-items:center;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+    }
+    select {
+      flex: 1;
+      min-width: 260px;
+      font-size: 18px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid #dcdcdc;
+      background:#fff;
+      color:#1d5fbf;
+      font-weight: 700;
+    }
+    .navbtn {
+      font-size: 18px;
+      padding: 12px 18px;
+      border-radius: 14px;
+      border: 1px solid #dcdcdc;
+      background:#fff;
+      min-width: 96px;
+    }
+    .navbtn:disabled {
+      opacity: .35;
+    }
+    .label {
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 14px;
+      margin-bottom: 6px;
+    }
+    .jp {
+      font-size: 26px;
+      font-weight: 900;
+      margin: 0 0 10px 0;
+    }
+    .en {
+      font-size: 20px;
+      margin: 0 0 12px 0;
+      white-space: pre-wrap;
+    }
+    .controls {
+      display:flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin: 10px 0 8px 0;
+    }
+    .btn {
+      font-size: 18px;
+      padding: 14px 18px;
+      border-radius: 14px;
+      border: 1px solid #dcdcdc;
+      background:#fff;
+      min-width: 180px;
+    }
+    .status {
+      font-size: 13px;
+      color: var(--muted);
+      margin: 8px 0 8px 0;
+    }
+    audio {
+      width: 100%;
+      margin-top: 6px;
+    }
+    .foot {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 10px;
+    }
+  </style>
 </head>
 <body>
-<h1>造影剤の説明・チューブ接続 音声ガイド</h1>
+  <h1>造影剤の説明・チューブ接続 音声ガイド</h1>
+  <p class="note">※ 必ず GitHub Pages（https://○○.github.io/...）のURLで開いてください。iPhoneでは自動再生できないため、下の再生ボタンを押してください。</p>
 
-<select id="stepSelect"><option value="01">01. これから造影剤の説明をします。</option>
-<option value="02">02. この検査では造影剤を使用します。</option>
-<option value="03">03. 造影剤は血管の中に入れるお薬です。</option>
-<option value="04">04. 腕の点滴から注入します。</option>
-<option value="05">05. 注入すると体が少し熱く感じることがあります。</option>
-<option value="06">06. これは一時的なものなので心配いりません。</option>
-<option value="07">07. 次にチューブを接続します。</option>
-<option value="08">08. 動かないように腕を楽にしてください。</option>
-<option value="09">09. 準備ができたら検査を始めます。</option></select>
-<div id="jp"></div>
-<div id="en"></div>
-<audio id="player" controls playsinline></audio>
+  <div class="card">
+    <div class="tag">ステップ選択</div>
+
+    <div class="row">
+      <select id="stepSelect" aria-label="ステップ選択">
+        <option value="01">01. これから造影剤の説明をします。</option>
+<option value="02">02. 造影剤を血管に入れると、血管の圧で体が熱くなったように感じることがあります。</option>
+<option value="03">03. みなさん同じように感じます。すぐにおさまるので心配いりません。</option>
+<option value="04">04. 造影剤のあと、尿が出たように感じることがありますが、感覚だけです。実際には出ていません。</option>
+<option value="05">05. これまでに造影剤で気分が悪くなったり、症状が出たことはありますか？</option>
+<option value="06">06. 造影剤を注入するためのチューブに交換します。</option>
+<option value="07">07. アルコール綿でかぶれたり、アレルギーが出たことはありますか？</option>
+<option value="08">08. 交換のときに針が少し動くので、少し痛みを感じることがあります。</option>
+<option value="09">09. 点滴の通りを確認するために、お水（生理食塩水）を少し流します。痛かったら教えてください。</option>
+      </select>
+      <button class="navbtn" id="prevBtn">← 前</button>
+      <button class="navbtn" id="nextBtn">次 →</button>
+    </div>
+
+    <div class="label">日本語（内容）</div>
+    <div class="jp" id="jpText"></div>
+
+    <div class="label">English (Script)</div>
+    <div class="en" id="enText"></div>
+
+    <div class="controls">
+      <button class="btn" id="playBtn">▶︎ 再生 / Play</button>
+      <button class="btn" id="pauseBtn">⏸ 一時停止 / Pause</button>
+      <button class="btn" id="replayBtn">↻ もう一度 / Replay</button>
+    </div>
+
+    <div class="status" id="status">待機中 / Ready</div>
+    <audio id="player" controls playsinline preload="none"></audio>
+
+    <div class="foot">再生できない場合は、消音モード・音量・Bluetooth接続をご確認ください。</div>
+  </div>
 
 <script>
-const STEPS=[{"id": "01", "jp": "これから造影剤の説明をします。", "en": "I'll walk you through the contrast dye now.", "audio": "audio/step_01.m4a"}, {"id": "02", "jp": "この検査では造影剤を使用します。", "en": "When the contrast dye is injected into your vein, you might feel warm sensation throughout your body due to the pressure in your blood vessels.", "audio": "audio/step_02.m4a"}, {"id": "03", "jp": "造影剤は血管の中に入れるお薬です。", "en": "Everyone feels the same way, and it will go away soon, so please donΓÇÖt worry.", "audio": "audio/step_03.m4a"}, {"id": "04", "jp": "腕の点滴から注入します。", "en": "After the contrast dye is injected, you may feel as if youΓÇÖve wet yourself, but itΓÇÖs just a sensation. Nothing actually happened.", "audio": "audio/step_04.m4a"}, {"id": "05", "jp": "注入すると体が少し熱く感じることがあります。", "en": "Have you ever had any side effects with contrast dye before?", "audio": "audio/step_05.m4a"}, {"id": "06", "jp": "これは一時的なものなので心配いりません。", "en": "WeΓÇÖre going to change the tube for the contrast dye injection.", "audio": "audio/step_06.m4a"}, {"id": "07", "jp": "次にチューブを接続します。", "en": "Have you ever had any skin reactions or allergies to alcohol wipes?", "audio": "audio/step_07.m4a"}, {"id": "08", "jp": "動かないように腕を楽にしてください。", "en": "You might feel a little pain while weΓÇÖre changing it, because the needle might move slightly.", "audio": "audio/step_08.m4a"}, {"id": "09", "jp": "準備ができたら検査を始めます。", "en": "IΓÇÖll flush a little bit of water to check the IV line. Please tell us if it hurts.", "audio": "audio/step_09.m4a"}];
-const sel=document.getElementById('stepSelect');
-const jp=document.getElementById('jp');
-const en=document.getElementById('en');
-const p=document.getElementById('player');
+  // IMPORTANT: scripts are hard-coded here to avoid any mojibake from filenames/metadata.
+  const STEPS = [{"id": "01", "jp": "これから造影剤の説明をします。", "en": "I'll walk you through the contrast dye now.", "audio": "audio/step_01.m4a"}, {"id": "02", "jp": "造影剤を血管に入れると、血管の圧で体が熱くなったように感じることがあります。", "en": "When the contrast dye is injected into your vein, you might feel warmth spreading throughout your body. It's due to the pressure in your blood vessels.", "audio": "audio/step_02.m4a"}, {"id": "03", "jp": "みなさん同じように感じます。すぐにおさまるので心配いりません。", "en": "Everyone feels the same way, and it will go away soon, so please don't worry.", "audio": "audio/step_03.m4a"}, {"id": "04", "jp": "造影剤のあと、尿が出たように感じることがありますが、感覚だけです。実際には出ていません。", "en": "After the contrast dye is injected, you may feel as if you urinated, but it's just a sensation. Nothing actually happened.", "audio": "audio/step_04.m4a"}, {"id": "05", "jp": "これまでに造影剤で気分が悪くなったり、症状が出たことはありますか？", "en": "Have you ever had any side effects with contrast dye before?", "audio": "audio/step_05.m4a"}, {"id": "06", "jp": "造影剤を注入するためのチューブに交換します。", "en": "We're going to change the tube for the contrast dye injection.", "audio": "audio/step_06.m4a"}, {"id": "07", "jp": "アルコール綿でかぶれたり、アレルギーが出たことはありますか？", "en": "Have you ever had any skin reactions or allergies to alcohol wipes?", "audio": "audio/step_07.m4a"}, {"id": "08", "jp": "交換のときに針が少し動くので、少し痛みを感じることがあります。", "en": "You might feel a little pain while we're changing it, because the needle might move slightly.", "audio": "audio/step_08.m4a"}, {"id": "09", "jp": "点滴の通りを確認するために、お水（生理食塩水）を少し流します。痛かったら教えてください。", "en": "I'll flush a little bit of water to check the IV line. Please tell us if it hurts.", "audio": "audio/step_09.m4a"}];
 
-function load(i){
- const s=STEPS[i];
- jp.textContent=s.jp;
- en.textContent=s.en;
- p.src=s.audio;
-}
-sel.onchange=()=>load(sel.selectedIndex);
-load(0);
+  const sel = document.getElementById("stepSelect");
+  const jpEl = document.getElementById("jpText");
+  const enEl = document.getElementById("enText");
+  const player = document.getElementById("player");
+  const statusEl = document.getElementById("status");
+  const prevBtn = document.getElementById("prevBtn");
+  const nextBtn = document.getElementById("nextBtn");
+
+  function currentIndex() {
+    return STEPS.findIndex(s => s.id === sel.value);
+  }
+
+  function setStatus(t) {
+    statusEl.textContent = t;
+  }
+
+  function loadByIndex(i) {
+    if (i < 0) i = 0;
+    if (i >= STEPS.length) i = STEPS.length - 1;
+
+    const s = STEPS[i];
+    sel.value = s.id;
+
+    jpEl.textContent = s.jp || "";
+    enEl.textContent = s.en || "";
+
+    player.src = s.audio;
+    player.currentTime = 0;
+
+    prevBtn.disabled = (i === 0);
+    nextBtn.disabled = (i === STEPS.length - 1);
+
+    setStatus("待機中 / Ready");
+  }
+
+  sel.addEventListener("change", () => loadByIndex(currentIndex()));
+  prevBtn.addEventListener("click", () => loadByIndex(currentIndex() - 1));
+  nextBtn.addEventListener("click", () => loadByIndex(currentIndex() + 1));
+
+  document.getElementById("playBtn").addEventListener("click", async () => {
+    try {
+      await player.play();
+    } catch (e) {
+      alert("再生できませんでした。音量や消音モードをご確認ください。");
+    }
+  });
+  document.getElementById("pauseBtn").addEventListener("click", () => player.pause());
+  document.getElementById("replayBtn").addEventListener("click", async () => {
+    player.currentTime = 0;
+    try { await player.play(); } catch (e) {}
+  });
+
+  player.addEventListener("play", () => setStatus("再生中 / Playing"));
+  player.addEventListener("pause", () => setStatus("一時停止 / Paused"));
+  player.addEventListener("ended", () => setStatus("待機中 / Ready"));
+
+  // initial
+  loadByIndex(0);
 </script>
+
 </body>
 </html>
