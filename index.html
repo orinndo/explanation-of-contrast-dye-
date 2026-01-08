@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>造影剤の説明・チューブ接続 音声ガイド</title>
+</head>
+<body>
+<h1>造影剤の説明・チューブ接続 音声ガイド</h1>
+
+<select id="stepSelect"><option value="01">01. これから造影剤の説明をします。</option>
+<option value="02">02. この検査では造影剤を使用します。</option>
+<option value="03">03. 造影剤は血管の中に入れるお薬です。</option>
+<option value="04">04. 腕の点滴から注入します。</option>
+<option value="05">05. 注入すると体が少し熱く感じることがあります。</option>
+<option value="06">06. これは一時的なものなので心配いりません。</option>
+<option value="07">07. 次にチューブを接続します。</option>
+<option value="08">08. 動かないように腕を楽にしてください。</option>
+<option value="09">09. 準備ができたら検査を始めます。</option></select>
+<div id="jp"></div>
+<div id="en"></div>
+<audio id="player" controls playsinline></audio>
+
+<script>
+const STEPS=[{"id": "01", "jp": "これから造影剤の説明をします。", "en": "I'll walk you through the contrast dye now.", "audio": "audio/step_01.m4a"}, {"id": "02", "jp": "この検査では造影剤を使用します。", "en": "When the contrast dye is injected into your vein, you might feel warm sensation throughout your body due to the pressure in your blood vessels.", "audio": "audio/step_02.m4a"}, {"id": "03", "jp": "造影剤は血管の中に入れるお薬です。", "en": "Everyone feels the same way, and it will go away soon, so please donΓÇÖt worry.", "audio": "audio/step_03.m4a"}, {"id": "04", "jp": "腕の点滴から注入します。", "en": "After the contrast dye is injected, you may feel as if youΓÇÖve wet yourself, but itΓÇÖs just a sensation. Nothing actually happened.", "audio": "audio/step_04.m4a"}, {"id": "05", "jp": "注入すると体が少し熱く感じることがあります。", "en": "Have you ever had any side effects with contrast dye before?", "audio": "audio/step_05.m4a"}, {"id": "06", "jp": "これは一時的なものなので心配いりません。", "en": "WeΓÇÖre going to change the tube for the contrast dye injection.", "audio": "audio/step_06.m4a"}, {"id": "07", "jp": "次にチューブを接続します。", "en": "Have you ever had any skin reactions or allergies to alcohol wipes?", "audio": "audio/step_07.m4a"}, {"id": "08", "jp": "動かないように腕を楽にしてください。", "en": "You might feel a little pain while weΓÇÖre changing it, because the needle might move slightly.", "audio": "audio/step_08.m4a"}, {"id": "09", "jp": "準備ができたら検査を始めます。", "en": "IΓÇÖll flush a little bit of water to check the IV line. Please tell us if it hurts.", "audio": "audio/step_09.m4a"}];
+const sel=document.getElementById('stepSelect');
+const jp=document.getElementById('jp');
+const en=document.getElementById('en');
+const p=document.getElementById('player');
+
+function load(i){
+ const s=STEPS[i];
+ jp.textContent=s.jp;
+ en.textContent=s.en;
+ p.src=s.audio;
+}
+sel.onchange=()=>load(sel.selectedIndex);
+load(0);
+</script>
+</body>
+</html>
