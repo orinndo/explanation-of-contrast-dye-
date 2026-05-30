@@ -109,6 +109,7 @@ document.getElementById('next').onclick=()=>load(idx+1);
 document.getElementById('play').onclick=()=>player.play();
 document.getElementById('pause').onclick=()=>player.pause();
 document.getElementById('replay').onclick=()=>{player.currentTime=0;player.play();}
+document.getElementById('goUrl').onclick=()=>{location.href="https://orinndo.github.io/Language-selection/en/";};
 player.onplay=()=>status.textContent="再生中 / Playing";
 player.onpause=()=>status.textContent="一時停止 / Paused";
 player.onended=()=>status.textContent="待機中 / Ready";
